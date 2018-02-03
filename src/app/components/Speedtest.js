@@ -6,19 +6,26 @@ import Link from './Link'
 const { connect } = PreactRedux
 
 const MathProblem = ({ mathProblem, _updateLocation }) => (
-  <li className='MathProblem'>
-    <Link href={`/blog/${mathProblem.id}`} onClick={() => _updateLocation(`/blog/${mathProblem.id}`)}>
-      {mathProblem.title}
-    </Link>
-  </li>
+  <div className='math-problem'>
+    <div className="row">
+      <div className="number">{mathProblem.num1}</div>
+    </div>
+    <div className="row">
+      <div className="symbol">{mathProblem.symbol1}</div>
+      <div className="number">{mathProblem.num2}</div>
+    </div>
+    <div className="row row-result"><input className="number" type="number" id="math-problem-result" /></div>
+  </div>
 )
 
 const Speedtest = ({ speedtest, _updateLocation }) => (
-  <ul className='Speedtest page'>
-    {speedtest.map((mathProblem, i) => (
-      <MathProblem _updateLocation={_updateLocation} mathProblem={mathProblem} key={i} />
-    ))}
-  </ul>
+  <div className='Speedtest page'>
+    <div className = 'math-problem-set'>
+      {speedtest.map((mathProblem) => (
+        <MathProblem mathProblem={mathProblem} key={mathProblem.number} />
+      ))}
+    </div>
+  </div>
 )
 
 export default connect(

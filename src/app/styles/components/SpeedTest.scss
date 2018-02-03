@@ -1,10 +1,39 @@
 .Speedtest {
-	.MathProblem {
-		a,
-		a:visited {
-			padding: 10px 0;
-			display: block;
-			color: inherit;
+	.math-problem-set {
+		overflow: hidden;
+		white-space: nowrap;
+
+		.math-problem:not(:first-child) {
+			opacity: 0.4;
+			pointer-events: none;
+		}
+
+		.math-problem {
+			font-size: 64px;
+			display: inline-block;
+			margin-right: 32px;
+
+			.row {
+				text-align: right;
+
+				> * {
+					display: inline-block;
+				}
+				.symbol {
+				    margin-right: 64px;
+				}
+
+				&.row-result {
+					border-top: 2px solid black;
+					padding-top: 16px;
+
+					input {
+						font-size: 64px;
+						text-align: right;
+						width: 160px;
+					}
+				}
+			}
 		}
 	}
 }
