@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR, INVALIDATE_FETCH_POSTS } from './../actions/posts'
+import { FETCH_SPEED_TEST, FETCH_SPEED_TEST_SUCCESS, FETCH_SPEED_TEST_ERROR, INVALIDATE_FETCH_SPEED_TEST } from './../actions/speedtest'
 
 export const initialState = {
   didInvalidate: false,
@@ -11,7 +11,7 @@ export const initialState = {
 
 export default (state = initialState, { type, payload, meta }) => {
   switch (type) {
-    case FETCH_POSTS:
+    case FETCH_SPEED_TEST:
       return Object.assign({}, state, {
         didInvalidate: false,
         isFetching: true,
@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload, meta }) => {
         hasError: false,
         error: null
       })
-    case FETCH_POSTS_ERROR:
+    case FETCH_SPEED_TEST_ERROR:
       return Object.assign({}, state, {
         hasError: true,
         error: payload,
@@ -27,14 +27,14 @@ export default (state = initialState, { type, payload, meta }) => {
         isFetching: false,
         didInvalidate: true
       })
-    case FETCH_POSTS_SUCCESS:
+    case FETCH_SPEED_TEST_SUCCESS:
       return Object.assign({}, state, {
         collection: payload,
         hasFetched: true,
         isFetching: false,
         didInvalidate: false
       })
-    case INVALIDATE_FETCH_POSTS:
+    case INVALIDATE_FETCH_SPEED_TEST:
       return Object.assign({}, state, {
         didInvalidate: true
       })

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import meta from './meta'
-import posts from './posts'
+import speedtest from './speedtest'
 
 export default combineReducers({
   meta,
-  posts
+  speedtest
 })

@@ -60,7 +60,7 @@ const sw = () => swPrecache('build/public/sw.js', {
   skipWaiting: true,
   stripPrefix: './build/public',
   runtimeCaching: [{
-    urlPattern: /\/posts/, // handle remote api call
+    urlPattern: /\/speedtest/, // handle remote api call
     handler: 'cacheFirst'
   }]
 })
