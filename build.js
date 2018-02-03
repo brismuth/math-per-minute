@@ -59,9 +59,9 @@ const sw = () => swPrecache('build/public/sw.js', {
   },
   skipWaiting: true,
   stripPrefix: './build/public',
-  runtimeCaching: [{
-    urlPattern: /\/speedtest/, // handle remote api call
-    handler: 'cacheFirst'
+  runtimeCaching: [{ // https://github.com/GoogleChromeLabs/sw-precache#runtimecaching-arrayobject
+    urlPattern: /\/api\//,
+    handler: 'networkFirst'
   }]
 })
 

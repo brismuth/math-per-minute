@@ -6,7 +6,7 @@ import { Router } from 'express'
 import fetch from 'node-fetch'
 import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
-import { fetchSpeedtestIfNeeded } from './../../app/store/actions/speedtest'
+import { generateSpeedtestIfNeeded } from './../../app/store/actions/speedtest'
 import { updateLocation } from './../../app/store/actions/meta'
 
 const assets = JSON.parse(readFileSync(`${__dirname}/public/assets.json`))
@@ -45,7 +45,7 @@ export default Router().get('/', (req, res) => {
   const store = createStore(createPreloadedState(), fetch)
   store.dispatch(updateLocation(req.originalUrl))
   withTimeout(
-    store.dispatch(fetchSpeedtestIfNeeded()),
+    store.dispatch(generateSpeedtestIfNeeded()),
     100 // adjust for optimal threshold
   )
   .catch((err) => console.log(err))

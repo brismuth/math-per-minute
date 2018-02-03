@@ -1,4 +1,4 @@
-import { FETCH_SPEED_TEST, FETCH_SPEED_TEST_SUCCESS, FETCH_SPEED_TEST_ERROR, INVALIDATE_FETCH_SPEED_TEST } from './../actions/speedtest'
+import { GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST } from './../actions/speedtest'
 
 export const initialState = {
   didInvalidate: false,
@@ -6,12 +6,12 @@ export const initialState = {
   hasFetched: false,
   hasError: false,
   error: null,
-  collection: [] // do not mutate these
+  mathProblems: [] // do not mutate these
 }
 
 export default (state = initialState, { type, payload, meta }) => {
   switch (type) {
-    case FETCH_SPEED_TEST:
+    case GENERATE_SPEED_TEST:
       return Object.assign({}, state, {
         didInvalidate: false,
         isFetching: true,
@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload, meta }) => {
         hasError: false,
         error: null
       })
-    case FETCH_SPEED_TEST_ERROR:
+    case GENERATE_SPEED_TEST_ERROR:
       return Object.assign({}, state, {
         hasError: true,
         error: payload,
@@ -27,14 +27,14 @@ export default (state = initialState, { type, payload, meta }) => {
         isFetching: false,
         didInvalidate: true
       })
-    case FETCH_SPEED_TEST_SUCCESS:
+    case GENERATE_SPEED_TEST_SUCCESS:
       return Object.assign({}, state, {
-        collection: payload,
+        mathProblems: payload,
         hasFetched: true,
         isFetching: false,
         didInvalidate: false
       })
-    case INVALIDATE_FETCH_SPEED_TEST:
+    case INVALIDATE_GENERATE_SPEED_TEST:
       return Object.assign({}, state, {
         didInvalidate: true
       })
