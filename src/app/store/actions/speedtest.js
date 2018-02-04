@@ -37,6 +37,9 @@ export const generateSpeedtestIfNeeded = () => (dispatch, getState) => {
 }
 
 export const submitProblemResponse = (problemIndex, response) => (dispatch, getState) => {
+  if (response === '') {
+    return;
+  }
   dispatch(successAction(SUBMIT_PROBLEM_RESPONSE, { problemIndex, response }));
   dispatch(successAction(ADD_PROBLEM, generateProblem()));
 }
