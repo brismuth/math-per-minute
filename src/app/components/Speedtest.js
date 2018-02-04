@@ -9,26 +9,24 @@ class MathProblem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: 1
+      inputValue: ''
     };
     this.submitResponse = this.submitResponse.bind(this);
   }
 
   updateInputValue(evt) {
-    console.log('evt', evt);
     this.setState({
       inputValue: evt.target.value
     });
   }
 
   submitResponse() {
-    console.log('clicked');
-    this.props._submitProblemResponse(this.props.mathProblem.index, this.state.inputValue);
+    this.props._submitProblemResponse(this.props.problemIndex, this.state.inputValue);
   }
 
   render() {
     return (
-      <div className='math-problem'>
+      !this.props.mathProblem.response ? <div className='math-problem'>
         <div className="row">
           <div className="number">{this.props.mathProblem.num1}</div>
         </div>
@@ -40,7 +38,7 @@ class MathProblem extends Component {
           <button onClick={this.submitResponse}>></button>
           <input className="number" type="number" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
         </div>
-      </div>
+      </div> : null
     );
   }
 };
@@ -49,8 +47,8 @@ class MathProblem extends Component {
 const Speedtest = ({ speedtest, _submitProblemResponse }) => (
   <div className='Speedtest page'>
     <div className = 'math-problem-set'>
-      {speedtest.map((mathProblem) => (
-        <MathProblem mathProblem={mathProblem} key={mathProblem.index} _submitProblemResponse={_submitProblemResponse} />
+      {speedtest.map((mathProblem, index) => (
+        <MathProblem mathProblem={mathProblem} problemIndex={index} key={index} _submitProblemResponse={_submitProblemResponse} />
       ))}
     </div>
   </div>
@@ -61,6 +59,6 @@ export default connect(
     speedtest: getSpeedtest(state)
   }),
   (dispatch) => ({
-    _submitProblemResponse: (index) => dispatch(submitProblemResponse(index))
+    _submitProblemResponse: (problemIndex, value) => dispatch(submitProblemResponse(problemIndex, value))
   })
 )(Speedtest)

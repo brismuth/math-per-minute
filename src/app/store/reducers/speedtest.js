@@ -1,4 +1,4 @@
-import { GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST } from './../actions/speedtest'
+import { GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST, SUBMIT_PROBLEM_RESPONSE, ADD_PROBLEM } from './../actions/speedtest'
 
 export const initialState = {
   didInvalidate: false,
@@ -37,6 +37,24 @@ export default (state = initialState, { type, payload, meta }) => {
     case INVALIDATE_GENERATE_SPEED_TEST:
       return Object.assign({}, state, {
         didInvalidate: true
+      })
+    case ADD_PROBLEM:
+      return {
+        ...state,
+        mathProblems: [...state.mathProblems, payload]
+      }
+    case SUBMIT_PROBLEM_RESPONSE:
+      return Object.assign({}, state, {
+        mathProblems: state.mathProblems.map( (problem, index) => {
+            if (index !== payload.problemIndex) {
+                return problem;
+            }
+
+            return {
+                ...problem,
+                response: payload.response
+            };
+        })
       })
     default:
       return state

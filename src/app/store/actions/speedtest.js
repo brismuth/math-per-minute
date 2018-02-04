@@ -1,9 +1,11 @@
 import { getShouldFetchSpeedtest, getSpeedtest } from './../selectors/speedtest'
 
-export const GENERATE_SPEED_TEST = 'api/GENERATE_SPEED_TEST'
-export const GENERATE_SPEED_TEST_SUCCESS = 'api/GENERATE_SPEED_TEST_SUCCESS'
-export const GENERATE_SPEED_TEST_ERROR = 'api/GENERATE_SPEED_TEST_ERROR'
-export const INVALIDATE_GENERATE_SPEED_TEST = 'api/INVALIDATE_GENERATE_SPEED_TEST'
+export const GENERATE_SPEED_TEST = 'speedtest/GENERATE_SPEED_TEST'
+export const GENERATE_SPEED_TEST_SUCCESS = 'speedtest/GENERATE_SPEED_TEST_SUCCESS'
+export const GENERATE_SPEED_TEST_ERROR = 'speedtest/GENERATE_SPEED_TEST_ERROR'
+export const INVALIDATE_GENERATE_SPEED_TEST = 'speedtest/INVALIDATE_GENERATE_SPEED_TEST'
+export const SUBMIT_PROBLEM_RESPONSE = 'speedtest/SUBMIT_PROBLEM_RESPONSE'
+export const ADD_PROBLEM = 'speedtest/ADD_PROBLEM'
 
 const checkStatus = (response) => {
   if (!response.ok) { // status in the range 200-299 or not
@@ -24,7 +26,6 @@ const generateSpeedtest = () => (dispatch, getState, fetchMethod) => {
   let mathProblems = [];
   while (problemCount--) {
     mathProblems.push(generateProblem());
-    mathProblems[mathProblems.length - 1].index = mathProblems.length - 1;
   }
 
   return dispatch(successAction(GENERATE_SPEED_TEST_SUCCESS, mathProblems));
@@ -36,9 +37,8 @@ export const generateSpeedtestIfNeeded = () => (dispatch, getState) => {
 }
 
 export const submitProblemResponse = (problemIndex, response) => (dispatch, getState) => {
-  console.log('submitProblemResponse', problemIndex, response);
-  const state = getState()
-  return getShouldFetchSpeedtest(state) ? dispatch(generateSpeedtest()) : Promise.resolve(getSpeedtest(state))
+  dispatch(successAction(SUBMIT_PROBLEM_RESPONSE, { problemIndex, response }));
+  dispatch(successAction(ADD_PROBLEM, generateProblem()));
 }
 
 
