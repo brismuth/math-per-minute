@@ -22,12 +22,14 @@
 
 			.row {
 				text-align: right;
+				position: relative;
 
 				> * {
 					display: inline-block;
 				}
 				.symbol {
-				    margin-right: 64px;
+					position: absolute;
+					left: 0;
 				}
 
 				&.row-result {
@@ -37,18 +39,60 @@
 					input {
 						font-size: 64px;
 						text-align: right;
-						width: 143px;
+						width: 170px;
 					}
 
 					input::-webkit-outer-spin-button,
 					input::-webkit-inner-spin-button {
-						/* display: none; <- Crashes Chrome on hover */
 						-webkit-appearance: none;
-						margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+						margin: 0;
 					}
 
 					button {
-						font-size: 64px;
+						font-size: 16px;
+						width: 100%;
+						margin-top: 8px;
+						display: block;
+
+						// bootstrap
+						font-weight: 400;
+						line-height: 1.25;
+						text-align: center;
+						white-space: nowrap;
+						vertical-align: middle;
+						-webkit-user-select: none;
+						-moz-user-select: none;
+						-ms-user-select: none;
+						user-select: none;
+						border: 1px solid transparent;
+						padding: 4px 8px;
+						border-radius: 4px;
+						-webkit-transition: all .2s ease-in-out;
+						-o-transition: all .2s ease-in-out;
+						transition: all .2s ease-in-out;
+						color: #fff;
+						background-color: #5cb85c;
+						border-color: #5cb85c;
+						-webkit-appearance: button;
+
+						&:hover {
+							color: #fff;
+							background-color: #449d44;
+							border-color: #419641;
+						}
+
+						&:active {
+							color: #fff;
+							background-color: #449d44;
+							background-image: none;
+							border-color: #419641;
+						}
+
+						&:focus {
+							outline: 0;
+							-webkit-box-shadow: 0 0 0 2px rgba(92,184,92,.5);
+							box-shadow: 0 0 0 2px rgba(92,184,92,.5);
+						}
 					}
 				}
 			}
