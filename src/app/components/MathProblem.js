@@ -29,7 +29,7 @@ export default class MathProblem extends Component {
           <div className="number">{this.props.mathProblem.num2}</div>
         </div>
         <div className="row row-result">
-          <input className="number" type="number" value="" ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
+          = <input className="number" type="number" value="" ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
           <button onClick={evt => this.submitResponse(evt)}>Submit</button>
         </div>
       </div>
