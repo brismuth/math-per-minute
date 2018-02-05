@@ -3,20 +3,19 @@ import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
 export default class MathProblem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: ''
-    };
-    this.submitResponse = this.submitResponse.bind(this);
-  }
-
-  updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value
-    });
   }
 
   submitResponse() {
-    this.props._submitProblemResponse(this.props.problemIndex, this.state.inputValue);
+    this.props._submitProblemResponse(this.props.problemIndex, this.numInput.value);
+  }
+
+  keyPress(evt) {
+    const enterCode = 13;
+    const spaceCode = 32;
+    if (evt.which == enterCode || evt.keyCode == enterCode
+      || evt.which == spaceCode || evt.keyCode == spaceCode) {
+      this.props._submitProblemResponse(this.props.problemIndex, this.numInput.value);
+    }
   }
 
   render() {
@@ -30,8 +29,8 @@ export default class MathProblem extends Component {
           <div className="number">{this.props.mathProblem.num2}</div>
         </div>
         <div className="row row-result">
-          <button onClick={this.submitResponse}>></button>
-          <input className="number" type="number" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
+          <button onClick={evt => this.submitResponse(evt)}>></button>
+          <input className="number" type="number" value="" ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
         </div>
       </div>
     );

@@ -2,6 +2,7 @@
 	.math-problem-set {
 		overflow: hidden;
 		white-space: nowrap;
+		padding: 16px;
 
 		.math-problem:not(:first-child) {
 			opacity: 0.4;
@@ -12,6 +13,12 @@
 			font-size: 64px;
 			display: inline-block;
 			margin-right: 32px;
+			background-color: white;
+			padding: 16px;
+			border-radius: 8px;
+			-webkit-box-shadow: 3px 3px 8px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+			-moz-box-shadow:    3px 3px 8px 2px #ccc;  /* Firefox 3.5 - 3.6 */
+			box-shadow:         3px 3px 8px 2px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 
 			.row {
 				text-align: right;
@@ -30,8 +37,14 @@
 					input {
 						font-size: 64px;
 						text-align: right;
-						width: 160px;
-						margin-right: -20px;
+						width: 143px;
+					}
+
+					input::-webkit-outer-spin-button,
+					input::-webkit-inner-spin-button {
+						/* display: none; <- Crashes Chrome on hover */
+						-webkit-appearance: none;
+						margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 					}
 
 					button {
