@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Fun math challenges in a progressive web app!",
   "scripts": {
+    "post-install": "sh prepModules.sh",
     "dev": "nodemon -e js,scss -w src -x \"node build && node ./build/server.js\"",
     "start": "node ./build/server.js",
     "build": "node build",
@@ -13,8 +14,10 @@
     "express": "4.15.2",
     "node-fetch": "1.6.3",
     "preact": "8.1.0",
+    "preact-compat": "3.18.0",
     "preact-redux": "2.0.1",
     "preact-render-to-string": "3.6.2",
+    "react-transition-group": "1.x",
     "redux": "3.6.0",
     "redux-thunk": "2.2.0",
     "shrink-ray": "0.1.3",

@@ -21,6 +21,7 @@ Then, install all dependencies:
 
 ```bash
 $ yarn
+$ yarn post-install
 ```
 
 Finally, to run the project for development:
