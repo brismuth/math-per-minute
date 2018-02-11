@@ -6,7 +6,9 @@ export default class MathProblem extends Component {
   }
 
   submitResponse() {
-    this.props._submitProblemResponse(this.props.problemIndex, this.numInput.value);
+    if (this.numInput.value !== '') {
+      this.props._submitProblemResponse(this.props.problemIndex, parseInt(this.numInput.value));
+    }
   }
 
   keyPress(evt) {
@@ -14,22 +16,42 @@ export default class MathProblem extends Component {
     const spaceCode = 32;
     if (evt.which == enterCode || evt.keyCode == enterCode
       || evt.which == spaceCode || evt.keyCode == spaceCode) {
-      this.props._submitProblemResponse(this.props.problemIndex, this.numInput.value);
+      this.submitResponse();
     }
   }
 
+  focusIfNecessary() {
+    if (this.props.mathProblem.isCurrentProblem) {
+      this.numInput.focus();
+    }
+  }
+
+  componentDidMount() {
+    this.focusIfNecessary();
+  }
+
+  componentDidUpdate() {
+    this.focusIfNecessary();
+  }
+
   render() {
+    const mathProblem = this.props.mathProblem;
+    const currentProblemClass = mathProblem.isCurrentProblem ? 'current-problem' : '';
+    const correctAnswer = mathProblem.response !== null && mathProblem.response === mathProblem.answer ? 'correct-answer' : '';
+    const wrongAnswer = mathProblem.response !== null && mathProblem.response !== mathProblem.answer ? 'wrong-answer' : '';
+    const classes = `${currentProblemClass} ${correctAnswer} ${wrongAnswer} math-problem`;
+
     return (
-      <div className='math-problem'>
+      <div className={classes}>
         <div className="row">
-          <div className="number">{this.props.mathProblem.num1}</div>
+          <div className="number">{mathProblem.num1}</div>
         </div>
         <div className="row">
-          <div className="symbol">{this.props.mathProblem.symbol1}</div>
-          <div className="number">{this.props.mathProblem.num2}</div>
+          <div className="symbol">{mathProblem.symbol1}</div>
+          <div className="number">{mathProblem.num2}</div>
         </div>
         <div className="row row-result">
-          = <input className="number" type="number" value="" ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
+          = <input className="number" type="number" value={mathProblem.response} ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
           <button onClick={evt => this.submitResponse(evt)}>Submit</button>
         </div>
       </div>

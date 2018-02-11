@@ -28,6 +28,8 @@ const generateSpeedtest = () => (dispatch, getState, fetchMethod) => {
     mathProblems.push(generateProblem());
   }
 
+  mathProblems[0].isCurrentProblem = true;
+
   return dispatch(successAction(GENERATE_SPEED_TEST_SUCCESS, mathProblems));
 }
 
@@ -37,9 +39,6 @@ export const generateSpeedtestIfNeeded = () => (dispatch, getState) => {
 }
 
 export const submitProblemResponse = (problemIndex, response) => (dispatch, getState) => {
-  if (response === '') {
-    return;
-  }
   dispatch(successAction(SUBMIT_PROBLEM_RESPONSE, { problemIndex, response }));
   dispatch(successAction(ADD_PROBLEM, generateProblem()));
 }
@@ -49,12 +48,18 @@ export const submitProblemResponse = (problemIndex, response) => (dispatch, getS
 **************** Action helpers *************************
 ********************************************************/
 let generateProblem = () => {
+  let num1 = getRandomInt(1, 15);
   let symbol = ['+', '-'][getRandomInt(0, 1)];
+  let num2 = getRandomInt(1, 9);
+  let answer = num1 + parseInt(symbol + num2);
 
   return {
-    num1: getRandomInt(1, 15),
+    num1,
     symbol1: symbol,
-    num2: getRandomInt(1, 9)
+    num2,
+    answer,
+    response: null,
+    isCurrentProblem: false,
   }
 }
 

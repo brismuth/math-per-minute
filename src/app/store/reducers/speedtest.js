@@ -46,14 +46,23 @@ export default (state = initialState, { type, payload, meta }) => {
     case SUBMIT_PROBLEM_RESPONSE:
       return Object.assign({}, state, {
         mathProblems: state.mathProblems.map( (problem, index) => {
-            if (index !== payload.problemIndex) {
-                return problem;
-            }
-
+          if (index === payload.problemIndex) {
             return {
-                ...problem,
-                response: payload.response
+              ...problem,
+              response: payload.response,
+              isCurrentProblem: false,
             };
+          } else if (index === payload.problemIndex + 1) {
+            return {
+              ...problem,
+              isCurrentProblem: true,
+            };
+          }
+
+          return {
+            ...problem,
+            isCurrentProblem: false,
+          };
         })
       })
     default:
