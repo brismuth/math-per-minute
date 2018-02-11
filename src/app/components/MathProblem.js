@@ -37,8 +37,8 @@ export default class MathProblem extends Component {
   render() {
     const mathProblem = this.props.mathProblem;
     const currentProblemClass = mathProblem.isCurrentProblem ? 'current-problem' : '';
-    const correctAnswer = mathProblem.response !== null && mathProblem.response === mathProblem.answer ? 'correct-answer' : '';
-    const wrongAnswer = mathProblem.response !== null && mathProblem.response !== mathProblem.answer ? 'wrong-answer' : '';
+    const correctAnswer = mathProblem.response !== null && mathProblem.isCorrect ? 'correct-answer' : '';
+    const wrongAnswer =  mathProblem.response !== null && !mathProblem.isCorrect ? 'wrong-answer' : '';
     const classes = `${currentProblemClass} ${correctAnswer} ${wrongAnswer} math-problem`;
 
     return (
@@ -51,7 +51,7 @@ export default class MathProblem extends Component {
           <div className="number">{mathProblem.num2}</div>
         </div>
         <div className="row row-result">
-          = <input className="number" type="number" value={mathProblem.response} ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
+          = <input className="number" type="number" value={mathProblem.response} disabled={!mathProblem.isCurrentProblem} ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
           <button onClick={evt => this.submitResponse(evt)}>Submit</button>
         </div>
       </div>

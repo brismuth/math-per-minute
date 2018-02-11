@@ -50,6 +50,7 @@ export default (state = initialState, { type, payload, meta }) => {
             return {
               ...problem,
               response: payload.response,
+              isCorrect: payload.response === problem.answer,
               isCurrentProblem: false,
             };
           } else if (index === payload.problemIndex + 1) {
