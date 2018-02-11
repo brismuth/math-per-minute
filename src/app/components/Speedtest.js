@@ -13,8 +13,11 @@ class Speedtest extends Component {
   }
 
   updatePosition() {
-    const offset = this.currentProblem.base.offsetLeft - 160;
+    let offset = this.currentProblem.base.offsetLeft - 60;
+    if (offset < 0) offset = 0;
+
     this.problemSet.style.left = `-${offset}px`;
+    this.problemSet.style.width = `calc(100% + ${offset}px)`;
   }
 
   componentDidMount() {
@@ -27,10 +30,12 @@ class Speedtest extends Component {
 
   render() {
     return (<div className='Speedtest page'>
-      <div className='math-problem-set' ref={(problemSet) => { this.problemSet = problemSet; }}>
-        {this.props.speedtest.map((mathProblem, index) => (
-          <MathProblem mathProblem={mathProblem} problemIndex={index} key={index} _submitProblemResponse={this.props._submitProblemResponse} ref={(problem) => { if (mathProblem.isCurrentProblem) { this.currentProblem = problem; } }} />
-        ))}
+      <div className='math-problem-set-wrapper'>
+        <div className='math-problem-set' ref={(problemSet) => { this.problemSet = problemSet; }}>
+          {this.props.speedtest.map((mathProblem, index) => (
+            <MathProblem mathProblem={mathProblem} problemIndex={index} key={index} _submitProblemResponse={this.props._submitProblemResponse} ref={(problem) => { if (mathProblem.isCurrentProblem) { this.currentProblem = problem; } }} />
+          ))}
+        </div>
       </div>
     </div>)
   }

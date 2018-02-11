@@ -22,7 +22,7 @@ const errorAction = (type, error) => ({ type, payload: error, error: true })
 
 const generateSpeedtest = () => (dispatch, getState, fetchMethod) => {
   dispatch(startAction(GENERATE_SPEED_TEST))
-  let problemCount = 4; // start with this many
+  let problemCount = 4; // start with this many problems
   let mathProblems = [];
   while (problemCount--) {
     mathProblems.push(generateProblem());

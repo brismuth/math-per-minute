@@ -1,108 +1,109 @@
 .Speedtest {
-	position: relative;
+	.math-problem-set-wrapper {
+		position: relative;
 
-	.math-problem-set {
-		overflow: hidden;
-		white-space: nowrap;
-		padding: 16px;
-		position: absolute;
-
-		.math-problem {
-			font-size: 64px;
-			display: inline-block;
-			margin-right: 32px;
-			background-color: white;
+		.math-problem-set {
+			overflow: hidden;
+			white-space: nowrap;
 			padding: 16px;
-			border-radius: 8px;
-			-webkit-box-shadow: 3px 3px 8px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-			-moz-box-shadow:    3px 3px 8px 2px #ccc;  /* Firefox 3.5 - 3.6 */
-			box-shadow:         3px 3px 8px 2px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+			position: absolute;
 
-			&:not(.current-problem) {
-				opacity: 0.4;
-				pointer-events: none;
-			}
+			.math-problem {
+				font-size: 48px;
+				display: inline-block;
+				margin-right: 32px;
+				background-color: white;
+				padding: 16px;
+				border-radius: 8px;
+				-webkit-box-shadow: 3px 3px 8px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+				-moz-box-shadow:    3px 3px 8px 2px #ccc;  /* Firefox 3.5 - 3.6 */
+				box-shadow:         3px 3px 8px 2px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 
-			&.wrong-answer {
-				background-color: red;
-			}
-
-			&.correct-answer {
-				background-color: green;
-			}
-
-			.row {
-				text-align: right;
-				position: relative;
-
-				> * {
-					display: inline-block;
-				}
-				.symbol {
-					position: absolute;
-					left: 0;
+				&:not(.current-problem) {
+					opacity: 0.4;
+					pointer-events: none;
 				}
 
-				&.row-result {
-					border-top: 2px solid black;
-					padding-top: 16px;
+				&.wrong-answer {
+					background-color: red;
+				}
 
-					input {
-						font-size: 64px;
-						text-align: right;
-						width: 130px;
+				&.correct-answer {
+					background-color: green;
+				}
+
+				.row {
+					text-align: right;
+					position: relative;
+
+					> * {
+						display: inline-block;
+					}
+					.symbol {
+						margin-right: 16px;
 					}
 
-					input::-webkit-outer-spin-button,
-					input::-webkit-inner-spin-button {
-						-webkit-appearance: none;
-						margin: 0;
-					}
+					&.row-result {
+						border-top: 2px solid black;
+						padding-top: 16px;
 
-					button {
-						font-size: 16px;
-						width: 100%;
-						margin-top: 8px;
-						display: block;
-
-						// bootstrap
-						font-weight: 400;
-						line-height: 1.25;
-						text-align: center;
-						white-space: nowrap;
-						vertical-align: middle;
-						-webkit-user-select: none;
-						-moz-user-select: none;
-						-ms-user-select: none;
-						user-select: none;
-						border: 1px solid transparent;
-						padding: 4px 8px;
-						border-radius: 4px;
-						-webkit-transition: all .2s ease-in-out;
-						-o-transition: all .2s ease-in-out;
-						transition: all .2s ease-in-out;
-						color: #fff;
-						background-color: #5cb85c;
-						border-color: #5cb85c;
-						-webkit-appearance: button;
-
-						&:hover {
-							color: #fff;
-							background-color: #449d44;
-							border-color: #419641;
+						input {
+							font-size: 48px;
+							text-align: right;
+							width: 90px;
 						}
 
-						&:active {
-							color: #fff;
-							background-color: #449d44;
-							background-image: none;
-							border-color: #419641;
+						input::-webkit-outer-spin-button,
+						input::-webkit-inner-spin-button {
+							-webkit-appearance: none;
+							margin: 0;
 						}
 
-						&:focus {
-							outline: 0;
-							-webkit-box-shadow: 0 0 0 2px rgba(92,184,92,.5);
-							box-shadow: 0 0 0 2px rgba(92,184,92,.5);
+						button {
+							font-size: 16px;
+							width: 100%;
+							margin-top: 8px;
+							display: block;
+
+							// bootstrap
+							font-weight: 400;
+							line-height: 1.25;
+							text-align: center;
+							white-space: nowrap;
+							vertical-align: middle;
+							-webkit-user-select: none;
+							-moz-user-select: none;
+							-ms-user-select: none;
+							user-select: none;
+							border: 1px solid transparent;
+							padding: 4px 8px;
+							border-radius: 4px;
+							-webkit-transition: all .2s ease-in-out;
+							-o-transition: all .2s ease-in-out;
+							transition: all .2s ease-in-out;
+							color: #fff;
+							background-color: #5cb85c;
+							border-color: #5cb85c;
+							-webkit-appearance: button;
+
+							&:hover {
+								color: #fff;
+								background-color: #449d44;
+								border-color: #419641;
+							}
+
+							&:active {
+								color: #fff;
+								background-color: #449d44;
+								background-image: none;
+								border-color: #419641;
+							}
+
+							&:focus {
+								outline: 0;
+								-webkit-box-shadow: 0 0 0 2px rgba(92,184,92,.5);
+								box-shadow: 0 0 0 2px rgba(92,184,92,.5);
+							}
 						}
 					}
 				}
