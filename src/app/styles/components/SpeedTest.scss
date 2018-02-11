@@ -1,8 +1,11 @@
 .Speedtest {
+	position: relative;
+
 	.math-problem-set {
 		overflow: hidden;
 		white-space: nowrap;
 		padding: 16px;
+		position: absolute;
 
 		.math-problem {
 			font-size: 64px;
