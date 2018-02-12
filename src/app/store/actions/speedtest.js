@@ -1,4 +1,4 @@
-import { getShouldFetchSpeedtest, getSpeedtest } from './../selectors/speedtest'
+import { getCorrectCount, getIncorrectCount } from './../selectors/speedtest'
 export const RESET_SPEEDTEST = 'speedtest/RESET_SPEEDTEST'
 export const GENERATE_SPEED_TEST = 'speedtest/GENERATE_SPEED_TEST'
 export const GENERATE_SPEED_TEST_SUCCESS = 'speedtest/GENERATE_SPEED_TEST_SUCCESS'
@@ -21,7 +21,7 @@ const startAction = (type) => ({ type })
 const successAction = (type, json) => ({ type, payload: json })
 const errorAction = (type, error) => ({ type, payload: error, error: true })
 
-const generateSpeedtest = () => (dispatch, getState, fetchMethod) => {
+const generateSpeedtest = () => (dispatch, getState) => {
   dispatch(startAction(GENERATE_SPEED_TEST))
   let problemCount = 4; // start with this many problems
   let mathProblems = [];
@@ -45,11 +45,24 @@ export const submitProblemResponse = (problemIndex, response) => (dispatch, getS
 
 export const timerFinished = () => (dispatch, getState) => {
   dispatch(startAction(TIMER_FINISHED));
+  dispatch(recordScore());
 }
 
 export const resetSpeedtest = () => (dispatch, getState) => {
   dispatch(startAction(RESET_SPEEDTEST));
   return dispatch(generateSpeedtest());
+}
+
+const recordScore = () => (dispatch, getState, fetchMethod) => {
+  const state = getState();
+  return fetchMethod('/api/speedtest/score', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      correct: getCorrectCount(state),
+      incorrect: getIncorrectCount(state),
+    }),
+  });
 }
 
 /********************************************************

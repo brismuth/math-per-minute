@@ -1,9 +1,15 @@
 import { Router } from 'express'
 
 export default Router()
-	.get('/:difficulty', (req, res) => {
-		let difficulty = req.params.difficulty;
+	.post('/score', (req, res) => {
+		console.log({
+			logtype: 'info',
+			time: new Date(),
+			correct: req.body.correct,
+			incorrect: req.body.incorrect,
+			ua: req.get('User-Agent'),
+			ip: req.ip,
+		})
 
-
-		res.json({error: 'do it on the client side'});
+		res.json({message: 'score recorded'});
 	});

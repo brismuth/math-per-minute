@@ -8,6 +8,7 @@ const app = express()
 app.disable('x-powered-by')
 app.use(shrinkRay())
 app.use(strictTransportSecurity())
+app.enable('trust proxy')
 
 // api
 app.use('/api', api)
