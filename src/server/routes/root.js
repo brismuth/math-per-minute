@@ -23,7 +23,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#36454f">
     <link rel="manifest" href="${manifestUrl}">
-    <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <style>${inlineCss}</style>
   </head>
   <body>
