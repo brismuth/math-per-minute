@@ -19,6 +19,8 @@ class Speedtest extends Component {
   }
 
   updatePosition() {
+    if (!this.currentProblem) return;
+
     let offset = this.currentProblem.base.offsetLeft - 60;
     if (offset < 0) offset = 0;
 
