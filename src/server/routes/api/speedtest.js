@@ -8,7 +8,7 @@ export default Router()
 			correct: req.body.correct,
 			incorrect: req.body.incorrect,
 			ua: req.get('User-Agent'),
-			ip: req.ip,
+			ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
 		})
 
 		res.json({message: 'score recorded'});
