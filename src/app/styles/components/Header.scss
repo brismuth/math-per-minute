@@ -6,7 +6,7 @@
 	padding: 0;
 	left: 0;
 	top: 0;
-	background: #2D4671;
+	background: $brand-primary;
 	z-index: 50;
 }
 
@@ -17,11 +17,11 @@
 	font-size: 24px;
 	line-height: 56px;
 	font-weight: 400;
-	color: #fff;
+	color: $brand-font-color;
 
 	a,
 	a:visited {
-		color: #fff;
+		color: $brand-font-color;
 		text-decoration: none;
 	}
 }

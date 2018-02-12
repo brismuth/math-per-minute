@@ -6,6 +6,7 @@ export const GENERATE_SPEED_TEST_ERROR = 'speedtest/GENERATE_SPEED_TEST_ERROR'
 export const INVALIDATE_GENERATE_SPEED_TEST = 'speedtest/INVALIDATE_GENERATE_SPEED_TEST'
 export const SUBMIT_PROBLEM_RESPONSE = 'speedtest/SUBMIT_PROBLEM_RESPONSE'
 export const ADD_PROBLEM = 'speedtest/ADD_PROBLEM'
+export const TIMER_FINISHED = 'speedtest/TIMER_FINISHED'
 
 const checkStatus = (response) => {
   if (!response.ok) { // status in the range 200-299 or not
@@ -34,8 +35,7 @@ const generateSpeedtest = () => (dispatch, getState, fetchMethod) => {
 }
 
 export const generateSpeedtestIfNeeded = () => (dispatch, getState) => {
-  const state = getState()
-  return getShouldFetchSpeedtest(state) ? dispatch(generateSpeedtest()) : Promise.resolve(getSpeedtest(state))
+  return dispatch(generateSpeedtest());
 }
 
 export const submitProblemResponse = (problemIndex, response) => (dispatch, getState) => {
@@ -43,6 +43,9 @@ export const submitProblemResponse = (problemIndex, response) => (dispatch, getS
   dispatch(successAction(ADD_PROBLEM, generateProblem()));
 }
 
+export const timerFinished = () => (dispatch, getState) => {
+  dispatch(startAction(TIMER_FINISHED));
+}
 
 /********************************************************
 **************** Action helpers *************************
@@ -52,6 +55,13 @@ let generateProblem = () => {
   let symbol = ['+', '-'][getRandomInt(0, 1)];
   let num2 = getRandomInt(1, 9);
   let answer = num1 + parseInt(symbol + num2);
+
+  // the server template should be simple
+  if (!__CLIENT__) {
+    num1 = '';
+    symbol = '';
+    num2 = '';
+  }
 
   return {
     num1,

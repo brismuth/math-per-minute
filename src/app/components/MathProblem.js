@@ -52,7 +52,7 @@ export default class MathProblem extends Component {
         </div>
         <div className="row row-result">
           = <input className="number" type="number" value={mathProblem.response} disabled={!mathProblem.isCurrentProblem} ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
-          <button onClick={evt => this.submitResponse(evt)}>Submit</button>
+          <button className='btn btn-success' onClick={evt => this.submitResponse(evt)}>Submit</button>
         </div>
       </div>
     );

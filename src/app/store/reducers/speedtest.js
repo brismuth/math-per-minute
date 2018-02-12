@@ -1,6 +1,7 @@
-import { GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST, SUBMIT_PROBLEM_RESPONSE, ADD_PROBLEM } from './../actions/speedtest'
+import { GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST, SUBMIT_PROBLEM_RESPONSE, ADD_PROBLEM, TIMER_FINISHED } from './../actions/speedtest'
 
 export const initialState = {
+  testActive: null,
   didInvalidate: false,
   isFetching: false,
   hasFetched: false,
@@ -45,6 +46,7 @@ export default (state = initialState, { type, payload, meta }) => {
       }
     case SUBMIT_PROBLEM_RESPONSE:
       return Object.assign({}, state, {
+        testActive: true,
         mathProblems: state.mathProblems.map( (problem, index) => {
           if (index === payload.problemIndex) {
             return {
@@ -66,6 +68,11 @@ export default (state = initialState, { type, payload, meta }) => {
           };
         })
       })
+    case TIMER_FINISHED:
+      return {
+        ...state,
+        testActive: false,
+      }
     default:
       return state
   }

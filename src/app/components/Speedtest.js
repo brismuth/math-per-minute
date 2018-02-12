@@ -3,6 +3,7 @@ import PreactRedux from 'preact-redux'
 import { getSpeedtest } from './../store/selectors/speedtest'
 import { submitProblemResponse } from './../store/actions/speedtest'
 import MathProblem from './MathProblem.js'
+import CountdownTimer from './CountdownTimer.js'
 const { connect } = PreactRedux
 
 class Speedtest extends Component {
@@ -36,6 +37,10 @@ class Speedtest extends Component {
             <MathProblem mathProblem={mathProblem} problemIndex={index} key={index} _submitProblemResponse={this.props._submitProblemResponse} ref={(problem) => { if (mathProblem.isCurrentProblem) { this.currentProblem = problem; } }} />
           ))}
         </div>
+      </div>
+      <div className='toolbar'>
+        <CountdownTimer timeRemaining={60} />
+        <button className='btn btn-primary'>↺</button>
       </div>
     </div>)
   }
