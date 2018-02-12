@@ -21,6 +21,13 @@ class CountdownTimer extends Component {
     if (nextProps.testActive && !this.props.testActive) {
       this.startTimer();
     }
+    // reset button was clicked
+    if (!nextProps.testActive && this.props.testActive) {
+      this.stopTimer();
+      this.setState({
+        countdown: '1:00',
+      });
+    }
   }
 
   startTimer() {

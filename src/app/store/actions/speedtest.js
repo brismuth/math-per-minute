@@ -1,5 +1,5 @@
 import { getShouldFetchSpeedtest, getSpeedtest } from './../selectors/speedtest'
-
+export const RESET_SPEEDTEST = 'speedtest/RESET_SPEEDTEST'
 export const GENERATE_SPEED_TEST = 'speedtest/GENERATE_SPEED_TEST'
 export const GENERATE_SPEED_TEST_SUCCESS = 'speedtest/GENERATE_SPEED_TEST_SUCCESS'
 export const GENERATE_SPEED_TEST_ERROR = 'speedtest/GENERATE_SPEED_TEST_ERROR'
@@ -45,6 +45,11 @@ export const submitProblemResponse = (problemIndex, response) => (dispatch, getS
 
 export const timerFinished = () => (dispatch, getState) => {
   dispatch(startAction(TIMER_FINISHED));
+}
+
+export const resetSpeedtest = () => (dispatch, getState) => {
+  dispatch(startAction(RESET_SPEEDTEST));
+  return dispatch(generateSpeedtest());
 }
 
 /********************************************************

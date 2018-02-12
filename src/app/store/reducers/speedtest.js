@@ -1,6 +1,7 @@
-import { GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST, SUBMIT_PROBLEM_RESPONSE, ADD_PROBLEM, TIMER_FINISHED } from './../actions/speedtest'
+import { RESET_SPEEDTEST, GENERATE_SPEED_TEST, GENERATE_SPEED_TEST_SUCCESS, GENERATE_SPEED_TEST_ERROR, INVALIDATE_GENERATE_SPEED_TEST, SUBMIT_PROBLEM_RESPONSE, ADD_PROBLEM, TIMER_FINISHED } from './../actions/speedtest'
 
 export const initialState = {
+  speedtestID: 1,
   testActive: null,
   didInvalidate: false,
   isFetching: false,
@@ -12,6 +13,11 @@ export const initialState = {
 
 export default (state = initialState, { type, payload, meta }) => {
   switch (type) {
+    case RESET_SPEEDTEST:
+      return {
+        ...initialState,
+        speedtestID: state.speedtestID + 1,
+      };
     case GENERATE_SPEED_TEST:
       return Object.assign({}, state, {
         didInvalidate: false,
