@@ -21,7 +21,7 @@ export default class MathProblem extends Component {
   }
 
   focusIfNecessary() {
-    if (this.props.mathProblem.isCurrentProblem) {
+    if (this.isEnabled()) {
       this.numInput.focus();
     }
   }
@@ -34,9 +34,13 @@ export default class MathProblem extends Component {
     this.focusIfNecessary();
   }
 
+  isEnabled() {
+    return this.props.mathProblem.isCurrentProblem && this.props.testActive !== false;
+  }
+
   render() {
     const mathProblem = this.props.mathProblem;
-    const currentProblemClass = mathProblem.isCurrentProblem ? 'current-problem' : '';
+    const currentProblemClass = this.isEnabled() ? 'current-problem' : '';
     const correctAnswer = mathProblem.response !== null && mathProblem.isCorrect ? 'correct-answer' : '';
     const wrongAnswer =  mathProblem.response !== null && !mathProblem.isCorrect ? 'wrong-answer' : '';
     const classes = `${currentProblemClass} ${correctAnswer} ${wrongAnswer} math-problem`;
@@ -51,7 +55,7 @@ export default class MathProblem extends Component {
           <div className="number">{mathProblem.num2}</div>
         </div>
         <div className="row row-result">
-          = <input className="number" type="number" value={mathProblem.response} disabled={!mathProblem.isCurrentProblem} ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
+          = <input className="number" type="number" value={mathProblem.response} disabled={!this.isEnabled()} ref={(input) => { this.numInput = input; }} onKeyPress={evt => this.keyPress(evt)} />
           <button className='btn btn-success' onClick={evt => this.submitResponse(evt)}>Submit</button>
         </div>
       </div>

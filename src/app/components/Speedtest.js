@@ -1,6 +1,6 @@
 import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
 import PreactRedux from 'preact-redux'
-import { getSpeedtest } from './../store/selectors/speedtest'
+import { getSpeedtest, getTestActive, getCorrectCount, getIncorrectCount } from './../store/selectors/speedtest'
 import { submitProblemResponse } from './../store/actions/speedtest'
 import MathProblem from './MathProblem.js'
 import CountdownTimer from './CountdownTimer.js'
@@ -34,13 +34,15 @@ class Speedtest extends Component {
       <div className='math-problem-set-wrapper'>
         <div className='math-problem-set' ref={(problemSet) => { this.problemSet = problemSet; }}>
           {this.props.speedtest.map((mathProblem, index) => (
-            <MathProblem mathProblem={mathProblem} problemIndex={index} key={index} _submitProblemResponse={this.props._submitProblemResponse} ref={(problem) => { if (mathProblem.isCurrentProblem) { this.currentProblem = problem; } }} />
+            <MathProblem mathProblem={mathProblem} problemIndex={index} key={index} testActive={this.props.testActive} _submitProblemResponse={this.props._submitProblemResponse} ref={(problem) => { if (mathProblem.isCurrentProblem) { this.currentProblem = problem; } }} />
           ))}
         </div>
       </div>
       <div className='toolbar'>
         <CountdownTimer timeRemaining={60} />
         <button className='btn btn-primary'>↺</button>
+        <div className='count correct-count'>{this.props.correctCount} 👍</div>
+        <div className='count wrong-count'>{this.props.incorrectCount} 👎</div>
       </div>
     </div>)
   }
@@ -49,6 +51,9 @@ class Speedtest extends Component {
 export default connect(
   (state) => ({
     speedtest: getSpeedtest(state),
+    testActive: getTestActive(state),
+    correctCount: getCorrectCount(state),
+    incorrectCount: getIncorrectCount(state),
   }),
   (dispatch) => ({
     _submitProblemResponse: (problemIndex, value) => dispatch(submitProblemResponse(problemIndex, value))
