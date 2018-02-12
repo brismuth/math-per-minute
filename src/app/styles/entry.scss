@@ -1,6 +1,10 @@
 @import './variables.scss';
 
+@import './components/Button.scss';
+@import './mixins/cardify.scss';
+
 @import './components/App.scss';
 @import './components/Header.scss';
+@import './components/About.scss';
 @import './components/Speedtest.scss';
-@import './components/Button.scss';
+@import './components/Footer.scss';

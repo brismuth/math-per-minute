@@ -5,6 +5,7 @@ import Header from './Header'
 import Speedtest from './Speedtest'
 import About from './About'
 import FourOhFour from './FourOhFour'
+import Footer from './Footer'
 const { Provider, connect } = PreactRedux
 
 const Content = connect(
@@ -23,9 +24,13 @@ const Content = connect(
 
 export default ({ store }) => (
   <Provider store={store}>
-    <div>
+    <div className="app-inside">
       <Header />
-      <Content />
+      <div className="content-wrapper">
+        <Content />
+        <div className="push"></div>
+      </div>
+      <Footer />
     </div>
   </Provider>
 )
