@@ -3,7 +3,7 @@
 	"short_name": "Math Per Minute",
 	"start_url": "/",
 	"background_color": "#f1f1f1",
-	"theme_color": "#2D4671",
+	"theme_color": "#36454f",
 	"display": "standalone",
 	"orientation": "portrait",
 	"icons": [{

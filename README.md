@@ -14,7 +14,7 @@ Make sure that [yarn](https://github.com/yarnpkg/yarn) is installed.
 First, clone the repo
 
 ```bash
-$ git clone https://github.com/ezekielchentnik/preact-pwa
+$ git clone git@bitbucket.org:brismuth/math-per-minute.git
 ```
 
 Then, install all dependencies:

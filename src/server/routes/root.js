@@ -21,7 +21,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#2D4671">
+    <meta name="theme-color" content="#36454f">
     <link rel="manifest" href="${manifestUrl}">
     <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
     <style>${inlineCss}</style>
