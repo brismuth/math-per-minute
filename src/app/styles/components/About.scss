@@ -2,6 +2,9 @@
 	.about-wrapper {
   		@include cardify();
 
+		ul {
+			margin: 0 0 16px 28px;
+		}
 		padding: 16px;
 		margin: 16px;
 	}
