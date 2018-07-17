@@ -38,8 +38,20 @@ Finally, to run the project for development:
 $ yarn dev
 ```
 
-Or, to run the project for production:
+### To run the project for production
 
 ```bash
 $ yarn start
+```
+
+### To run the project for production with docker
+
+```bash
+$ ./build.sh
+$ docker run -d \
+	--name math \
+	-p 3000:3000 \
+    -v /ssd_files/math/access.log:/usr/src/app/build/access.log \
+    -v /ssd_files/math/logs/:/root/.pm2/logs/ \
+	math
 ```
