@@ -1,8 +1,16 @@
 # Math per minute
 
-Based on [preact-pwa](https://preact-pwa-yfxiijbzit.now.sh/)
+Based on [preact-pwa](https://preact-pwa-yfxiijbzit.now.sh/). I wanted to get some exposure to progressive web apps, and after losing the math speed round in [Jackbox Party Pack 3's trivia game](https://jackboxgames.com/project/jbpp3/), I decided to build a math speed test of my own.
 
-## Getting Started
+Check it out! https://mathperminute.com/
+
+## Features
+* Counts the number of addition and subtraction problems you can solve in a minute
+* Progressive web app
+* Mobile friendly
+* Offline support
+
+## Working with this project locally
 ### Prerequisites
 
 Make sure that [Node v7](https://nodejs.org/en/download/releases/) is installed.
@@ -14,7 +22,7 @@ Make sure that [yarn](https://github.com/yarnpkg/yarn) is installed.
 First, clone the repo
 
 ```bash
-$ git clone git@bitbucket.org:brismuth/math-per-minute.git
+$ git clone https://github.com/brismuth/math-per-minute.git
 ```
 
 Then, install all dependencies:
@@ -35,29 +43,3 @@ Or, to run the project for production:
 ```bash
 $ yarn start
 ```
-
-## performance insights (note: incomplete)
-
-### manifest.json
-
-Using 192x192 for minimum sized icon, omitting other sizes to reduce downloads for users
-[reference](https://developers.google.com/web/updates/2015/10/splashscreen)
-
-### libraries
-
-- we can shave off ~10 KB, ~3kb Gzipped by pruning `preact-redux` & manually connecting
-
-## Features
-
-- Progressive Web App enabled with [service workers](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
-- Offline capable with [service workers](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
-- Universal JavaScript (isomorphic rendering)
-- Asset Versioning, long term caching, & cache busting for browser that do not support service workers via [node-rev](https://www.npmjs.com/package/node-rev)
-- Modern JavaScript syntax with [ES6](https://github.com/lukehoban/es6features) via [buble](https://buble.surge.sh/guide/).
-- Performant bundles via [rollup](http://rollupjs.org/).
-- Component-based UI architecture via [Preact](https://preactjs.com/).
-- Application state management w/time-travel debugging via [Redux](https://github.com/gaearon/redux).
-- CSS built with [Sass](http://sass-lang.com/) and optimized with [purify-css](https://github.com/purifycss/purifycss).
-- Async actions handled with [redux-thunk](https://github.com/gaearon/redux-thunk), [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch), and [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-- Node server is built with [express](http://expressjs.com/).
-- Linting is handled with [Standard](http://standardjs.com/).
